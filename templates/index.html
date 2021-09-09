@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<title>COVID-19 Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='icon' type='image/png' href='https://img.icons8.com/cotton/64/000000/virus-research--v2.png' />
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+  crossorigin="" />
+
+<!-- Leaflet JavaScript code -->
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+  crossorigin=""></script>
+
+<!-- D3 library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"
+  integrity="sha512-L5K9Bf852XyB+wrvRFGwWzfhVI+TZqJlgwzX9yvrfhILuzIZfrcQO4au9D9eVDnkQ6oqYr9v2QwJdFo+eKE50Q=="
+  crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Our CSS -->
+<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
+      onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a href="#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
+    <a href="#Charts" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Charts</a>
+    <a href="#DeathVaccineCounts" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Vaccine & Death
+      Counts</a>
+  </div>
+  <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
+      class="fa fa-search"></i></a>
+</div>
+</div>
+
+<div class="w3-display-container" style="margin-bottom:50px">
+  <img
+    src="https://www.iru.org/sites/default/files/styles/desktop_1x_2000x600/public/2020-03/Alarming%20gap%20in%20global%20response%20to%20COVID-19.jpg?h=22393765&itok=ZovR8VlL"
+    style="width:100%">
+  <div class="w3-display-bottomleft w3-container w3-black w3-hover-black w3-hide-small"
+    style="bottom:10%;opacity:0.7;width:70%">
+    <h1>COVID-19 Dashboard</h1>
+    <h3>Use the interactive map or the dropdown menu to explore COVID-19 data by State</h3>
+    <h5>*Data not available for Texas and Hawaii</h5>
+  </div>
+</div>
+
+<body>
+
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#flip").click(function () {
+          $("#panel").slideToggle("slow");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="flip">
+      Click to see nationwide Covid-19 vaccine and death counts
+    </div>
+    <div id="panel">
+      <div class="panel panel-default" id="status-bar">
+        <div class="panel-body">United States at a Glance</div>
+        <button id="statsbar_dailytrendscases" class="col-6 col-md d-flex grow-2 status-item"
+          data-tabname="trends_dailycases" data-group="cases">
+          <div class="status-label">
+            <div class="status-label-top">
+              Cases
+              <span style="font-weight: normal">Total</span>
+              <span class="totalNumber" id="status-cases-total">href='total_cases'</span>
+            </div>
+            <div class="status-label-bottom">
+              Last 30 Days
+              <span class="graphStatBar" id="status-cases-30-day"><svg height="45" width="120"
+                  style="background-color: white;">
+                  <g class="status-line-group">
+                    <path class="line"
+                      d="M100,14.192627390778409L97.05882352941177,10L91.17647058823529,10.688427588016108L88.23529411764706,11.196110628002895L85.29411764705883,11.19063558148686L82.35294117647058,11.413854248140572L79.41176470588235,15.391152480288376L76.47058823529412,12.342877824361285L70.58823529411765,13.833484743226634L67.64705882352942,13.326719878742537L64.70588235294117,14.025179384288023L61.76470588235294,14.447574122025037L58.82352941176471,19.179136526381754L55.88235294117647,16.547985600676242L50,17.2657948047784L47.05882352941176,17.817550268894255L44.11764705882353,18.015842170974967L41.17647058823529,18.79550919875828L38.23529411764706,21.81460627759992L35.294117647058826,21.260266319476493L29.411764705882355,22.025786643218375L26.47058823529412,23.581413990274143L23.52941176470588,23.70363335163207L20.588235294117645,24.911442215669222L17.647058823529413,29.94355406790612L14.705882352941178,27.74309546596192L8.823529411764707,29.031669767735607L5.88235294117647,29.144673367566547L2.941176470588235,30.246824035794273L0,31.475002793391084"
+                      marker-start="url(#arrow)" fill="none" stroke="#88aae3" stroke-width="3"></path>
+                  </g>
+                  <defs>
+                    <marker id="arrow" refX="0" refY="2.5" viewBox="0 0 10 10" preserveAspectRatio="xMinYMin meet"
+                      markerWidth="9" markerHeight="6" orient="auto-start-reverse" style="fill: rgb(136, 170, 227);">
+                      <path d="M 0 0 0 5 5 2"></path>
+                    </marker>
+                  </defs>
+                </svg></span>
+            </div>
+          </div>
+        </button>
+        <button id="statsbar_dailytrendsdeaths" class="col-6 col-md d-flex grow-2 status-item"
+          data-tabname="trends_dailydeaths" data-group="cases">
+          <div class="status-label">
+            <div class="status-label-top">
+              Deaths
+              <span style="font-weight: normal">Total</span>
+              <span class="totalNumber" id="status-deaths-total">636,015</span>
+            </div>
+            <div class="status-label-bottom">
+              Last 30 Days
+              <span class="graphStatBar" id="status-deaths-30-day">
+                <svg height="45" width="120" style="background-color: white;">
+                  <g class="status-line-group">
+                    <path class="line"
+                      d="M100,11.98391219365509L97.05882352941177,10L91.17647058823529,11.578709968425802L88.23529411764706,13.157419936851603L85.29411764705883,15.178168696436629L82.35294117647058,16.42008720493159L79.41176470588235,19.50909637648474L76.47058823529412,17.76725304465494L70.58823529411765,19.71432867238009L67.64705882352942,21.38776123891144L64.70588235294117,24.57149300857014L61.76470588235294,24.597804841377236L58.82352941176471,26.718538565629228L55.88235294117647,24.913546835062395L50,26.002856713276202L47.05882352941176,26.807998797173354L44.11764705882353,28.29198616749361L41.17647058823529,28.960306720793866L38.23529411764706,28.13937753721245L35.294117647058826,28.19200120282664L29.411764705882355,29.33919711321606L26.47058823529412,31.075778078484436L23.52941176470588,30.93895654788754L20.588235294117645,31.875657795820178L17.647058823529413,34.48052924372275L14.705882352941178,33.606976394527145L8.823529411764707,34.60156367463539L5.88235294117647,33.827995790106755L2.941176470588235,33.67538715982559L0,34.38054427905578"
+                      marker-start="url(#arrow2)" fill="none" stroke="#8B8B8B" stroke-width="3"></path>
+                  </g>
+                  <defs>
+                    <marker id="arrow2" refX="0" refY="2.9" viewBox="0 0 10 10" preserveAspectRatio="xMinYMin meet"
+                      markerWidth="9" markerHeight="6" orient="auto-start-reverse" style="fill: rgb(139, 139, 139);">
+                      <path d="M 0 0 0 5 5 2"></path>
+                    </marker>
+                  </defs>
+                </svg></span>
+            </div>
+          </div>
+          <!-- <div class="status-label-total" id="status-deaths-30-day"></div> -->
+        </button>
+
+        <button id="totalVaccineAdmin" class="col-6 col-md d-flex grow-4 status-item"
+          data-tabname="vaccinations_vacc-people-onedose-pop-pop18" data-group="vaccinationsPrt">
+          <div class="status-label">
+            <div class="status-label-top">
+              <span id="status-total-vaccines">74.1% of Adults with At Least</span>
+            </div>
+            <div class="status-label-bottom">
+              One Vaccination
+              <span id="status-progress-bar"><svg height="45" width="120">
+                  <rect x="10" y="5" style="outline: black solid thin; fill: rgb(245, 245, 245);" height="20"
+                    width="109" rx="1" ry="5"></rect>
+                  <rect x="10" y="5" height="20" width="77.92" rx="1" ry="5" style="fill: rgb(130, 178, 186);">
+                  </rect>
+                </svg></span>
+            </div>
+          </div>
+          <!-- <div class="status-label-total status-number" id="status-progress-bar"></div> -->
+        </button>
+        <button id="statsbar_casestotaldeaths" class="col-6 col-md d-flex grow-2 status-item"
+          data-tabname="county-view">
+          <div class="status-label">
+            <div class="status-label-top">
+              Community
+              <span id="transmission-label" class="transmission-label" style="
+        text-transform: capitalize;
+        font-weight: normal;
+      ">high</span>
+            </div>
+            <div class="status-label-bottom" style="font-weight: bold">
+              Transmission
+              <span id="transmission-label2" class="transmission-label2" style="
+        text-transform: capitalize;
+        font-weight: normal;
+      ">high</span>
+              <span class="transmissionBar" id="transmission-bar"><svg width="120" height="45">
+                  <g>
+                    <rect class="first" width="25" x="0" fill="#1D8AFF" opacity="0.5" stroke="#808080" stroke-width="0"
+                      height="30"></rect>
+                  </g>
+                  <g>
+                    <rect class="first" width="25" x="25" fill="#FFF70E" opacity="0.5" stroke="#808080" stroke-width="0"
+                      height="30"></rect>
+                  </g>
+                  <g>
+                    <rect class="first" width="25" x="50" fill="#ff7134" opacity="0.5" stroke="#808080" stroke-width="0"
+                      height="30"></rect>
+                  </g>
+                  <g>
+                    <rect class="first" width="25" x="75" fill="#FF0000" opacity="1" stroke="#808080" stroke-width="3"
+                      height="30"></rect>
+                  </g>
+                </svg></span>
+            </div>
+          </div>
+          <!-- <div class="status-label-total status-number" id="status-deaths-total"></div> -->
+        </button>
+      </div>
+    </div>
+    <div>
+      <div id="map"></div>
+    </div>
+    <div class="row">  
+      <div class="col-md-6">
+        <div class="well">
+          <h5>State:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="well">
+          <h5>State2:</h5>
+            <select id="selDataset2" onchange="optionChanged2(this.value)"></select>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-md-12">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Map</title>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="chart1" height = "100px"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="chart4"></div>
+      </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="chart2"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="chart5"></div>
+      </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="chart3"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="chart6"></div>
+      </div>
+      
+          
+          
+
+
+ 
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../static/js/app2.js"></script>
+  <script src="../static/js/app.js"></script>
+  <script src="../static/js/mapdata.js"></script>
+  <script src="../static/js/usmap.js"></script>
+  <script src="../static/js/select.js"></script>
+
+</body>
+
+</html>
