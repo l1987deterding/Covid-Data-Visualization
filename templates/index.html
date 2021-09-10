@@ -30,7 +30,7 @@
 
 <!-- Navbar -->
 <div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
+  <div class="w3-bar w3-black w3-card" style="opacity:0.7">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
       onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
@@ -76,7 +76,7 @@
     <div id="panel">
       <div class="panel panel-default" id="status-bar">
         <div class="panel-body">United States at a Glance</div>
-        <button id="statsbar_dailytrendscases" class="col-6 col-md d-flex grow-2 status-item"
+        <button id="statsbar_dailytrendscases" class="col-md-3"
           data-tabname="trends_dailycases" data-group="cases">
           <div class="status-label">
             <div class="status-label-top">
@@ -103,7 +103,7 @@
             </div>
           </div>
         </button>
-        <button id="statsbar_dailytrendsdeaths" class="col-6 col-md d-flex grow-2 status-item"
+        <button id="statsbar_dailytrendsdeaths" class="col-md-3"
           data-tabname="trends_dailydeaths" data-group="cases">
           <div class="status-label">
             <div class="status-label-top">
@@ -129,10 +129,9 @@
                 </svg></span>
             </div>
           </div>
-          <!-- <div class="status-label-total" id="status-deaths-30-day"></div> -->
         </button>
 
-        <button id="totalVaccineAdmin" class="col-6 col-md d-flex grow-4 status-item"
+        <button id="totalVaccineAdmin" class="col-md-3"
           data-tabname="vaccinations_vacc-people-onedose-pop-pop18" data-group="vaccinationsPrt">
           <div class="status-label">
             <div class="status-label-top">
@@ -150,7 +149,7 @@
           </div>
           <!-- <div class="status-label-total status-number" id="status-progress-bar"></div> -->
         </button>
-        <button id="statsbar_casestotaldeaths" class="col-6 col-md d-flex grow-2 status-item"
+        <button id="statsbar_casestotaldeaths" class="col-md-3"
           data-tabname="county-view">
           <div class="status-label">
             <div class="status-label-top">
@@ -243,7 +242,7 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="../static/js/app2.js"></script>
-  <script src="../static/js/app.js"></script>
+  <!-- <script src="../static/js/app.js"></script> -->
   <script src="../static/js/mapdata.js"></script>
   <script src="../static/js/usmap.js"></script>
   <script src="../static/js/select.js"></script>
