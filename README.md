@@ -23,7 +23,7 @@ Once the user has selected states, three graphs for each state will populate in 
   * For the Vaccination Hesitancy graphs, this information was provided at the county level for each state. With the data we had, we were not able to provide an overall weighted hesitancy at the state level, but felt that this was extremely relevant to our topic so we are providing the max, mean, and min hesitancy for each state. 
 
 
-Our final graph displays population density and number of Covid deaths per state. We thought there may be a correlation between the two, but based on our graph,there does not appear to be a strong correlation between the two at the state level. We believe there may be a stronger correlation between population density in cities and the number of deaths, but we unfortunately did not have data at the time of this project. 
+Our final graph displays population density and number of Covid deaths per state. We thought there may be a correlation between the two, but based on our graph,there does not appear to be a strong correlation between the two at the state level. We believe there may be a stronger correlation between population density in cities and the number of deaths, but we unfortunately did not have that data at the time of this project. 
 ![image](https://user-images.githubusercontent.com/83254124/132961174-81a275a8-2edc-428a-a824-0b6ea129507c.png)
 
 ### [Try out our app!](https://covid-data-vis.herokuapp.com/)
