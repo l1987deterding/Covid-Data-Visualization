@@ -1,1 +1,1 @@
-web: gunicorn aarvinapp:app
+web: gunicorn app:app
