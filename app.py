@@ -1,7 +1,10 @@
 from flask import Flask, render_template, jsonify
 import pymongo
-from config import mongo_url
+# from config import mongo_url
 from mongo_atlas import password
+import os
+
+mongo_url=os.environ.get('mongo_pass')
 
 app=Flask(__name__)
 
