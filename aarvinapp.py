@@ -4,7 +4,7 @@ from mongo_atlas import password
 
 
 app=Flask(__name__)
-conn = f'mongodb+srv://aarvinrathod:{password}@cluster0.cw8ac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+conn = f'mongodb+srv://aarvinrathod:{password}@covid.01bco.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 client=pymongo.MongoClient(conn)
 mongo_db=client.coviddb
 

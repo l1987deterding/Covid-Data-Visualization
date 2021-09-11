@@ -1,83 +1,95 @@
 <!DOCTYPE html>
 <html>
-<title>COVID-19 Dashboard</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel='icon' type='image/png' href='https://img.icons8.com/cotton/64/000000/virus-research--v2.png' />
 
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
-  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-  crossorigin="" />
+<head>
+  <title>COVID-19 Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel='icon' type='image/png' href='https://img.icons8.com/cotton/64/000000/virus-research--v2.png' />
 
-<!-- Leaflet JavaScript code -->
-<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-  crossorigin=""></script>
 
-<!-- D3 library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"
-  integrity="sha512-L5K9Bf852XyB+wrvRFGwWzfhVI+TZqJlgwzX9yvrfhILuzIZfrcQO4au9D9eVDnkQ6oqYr9v2QwJdFo+eKE50Q=="
-  crossorigin="anonymous"></script>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin="" />
 
-<!-- Bootstrap  -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<!-- Our CSS -->
-<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <!-- Leaflet JavaScript code -->
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card" style="opacity:0.7">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
-      onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
-    <a href="#Charts" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Charts</a>
-    <a href="#DeathVaccineCounts" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Vaccine & Death
-      Counts</a>
-  </div>
-  <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
-      class="fa fa-search"></i></a>
-</div>
-</div>
 
-<div class="w3-display-container" style="margin-bottom:50px">
-  <img
-    src="https://www.iru.org/sites/default/files/styles/desktop_1x_2000x600/public/2020-03/Alarming%20gap%20in%20global%20response%20to%20COVID-19.jpg?h=22393765&itok=ZovR8VlL"
-    style="width:100%">
-  <div class="w3-display-bottomleft w3-container w3-black w3-hover-black w3-hide-small"
-    style="bottom:10%;opacity:0.7;width:70%">
-    <h1>COVID-19 Dashboard</h1>
-    <h3>Use the interactive map or the dropdown menu to explore COVID-19 data by State</h3>
-    <h5>*Data not available for Texas and Hawaii</h5>
-  </div>
-</div>
+  <!-- D3 library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"
+    integrity="sha512-L5K9Bf852XyB+wrvRFGwWzfhVI+TZqJlgwzX9yvrfhILuzIZfrcQO4au9D9eVDnkQ6oqYr9v2QwJdFo+eKE50Q=="
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#flip").click(function () {
+        $("#panel").slideToggle("slow");
+      });
+    });
+  </script>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+</head>
 
 <body>
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-black w3-card" style="opacity:0.7">
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
+        onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
+      <a href="#DeathVaccineCounts" class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Nationwide Vaccine &
+        Death
+        Counts</a>
+      <a href="#Photos&Quotes" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Photos & Quotes</a>
+      <a href="#StateSelection" class="w3-bar-item w3-button w3-padding-large w3-hide-small">State Selection</a>
+      <a href="#Charts" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Charts</a>
+    </div>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
+        class="fa fa-search"></i></a>
+  </div>
+  <div class="w3-display-container" style="margin-bottom:50px">
+    <img
+      src="https://www.iru.org/sites/default/files/styles/desktop_1x_2000x600/public/2020-03/Alarming%20gap%20in%20global%20response%20to%20COVID-19.jpg?h=22393765&itok=ZovR8VlL"
+      style="width:100%">
+    <div class="w3-display-bottomleft w3-container w3-black w3-hover-black w3-hide-small"
+      style="bottom:10%;opacity:0.7;width:70%">
+      <h1>COVID-19 Dashboard</h1>
+      <h3>Use the dropdown menu to explore COVID-19 data by State</h3>
+      <h5>*Data not available for Texas and Hawaii</h5>
+    </div>
+  </div>
 
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("#flip").click(function () {
-          $("#panel").slideToggle("slow");
-        });
-      });
-    </script>
-  </head>
-
-  <body>
+  
     <div id="flip">
       Click to see nationwide Covid-19 vaccine and death counts
     </div>
     <div id="panel">
       <div class="panel panel-default" id="status-bar">
         <div class="panel-body">United States at a Glance</div>
-        <button id="statsbar_dailytrendscases" class="col-md-3"
-          data-tabname="trends_dailycases" data-group="cases">
+        <button id="statsbar_dailytrendscases" class="col-md-3" data-tabname="trends_dailycases" data-group="cases">
           <div class="status-label">
             <div class="status-label-top">
               Cases
@@ -103,8 +115,7 @@
             </div>
           </div>
         </button>
-        <button id="statsbar_dailytrendsdeaths" class="col-md-3"
-          data-tabname="trends_dailydeaths" data-group="cases">
+        <button id="statsbar_dailytrendsdeaths" class="col-md-3" data-tabname="trends_dailydeaths" data-group="cases">
           <div class="status-label">
             <div class="status-label-top">
               Deaths
@@ -129,10 +140,11 @@
                 </svg></span>
             </div>
           </div>
+          <!-- <div class="status-label-total" id="status-deaths-30-day"></div> -->
         </button>
 
-        <button id="totalVaccineAdmin" class="col-md-3"
-          data-tabname="vaccinations_vacc-people-onedose-pop-pop18" data-group="vaccinationsPrt">
+        <button id="totalVaccineAdmin" class="col-md-3" data-tabname="vaccinations_vacc-people-onedose-pop-pop18"
+          data-group="vaccinationsPrt">
           <div class="status-label">
             <div class="status-label-top">
               <span id="status-total-vaccines">74.1% of Adults with At Least</span>
@@ -149,8 +161,7 @@
           </div>
           <!-- <div class="status-label-total status-number" id="status-progress-bar"></div> -->
         </button>
-        <button id="statsbar_casestotaldeaths" class="col-md-3"
-          data-tabname="county-view">
+        <button id="statsbar_casestotaldeaths" class="col-md-3" data-tabname="county-view">
           <div class="status-label">
             <div class="status-label-top">
               Community
@@ -185,67 +196,145 @@
                 </svg></span>
             </div>
           </div>
-          <!-- <div class="status-label-total status-number" id="status-deaths-total"></div> -->
         </button>
       </div>
     </div>
-    <div>
-      <div id="map"></div>
-    </div>
-    <div class="row">  
-      <div class="col-md-6">
-        <div class="well">
-          <h5>State:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+  </div>
+  <marquee>
+    <span>Latest COVID News| </span>
+    <a href="https://www.wsj.com/articles/some-vaccines-last-a-lifetime-heres-why-covid-19-shots-dont-11631266201"
+      target="_blank">Some Vaccines Last a Lifetime. Here’s Why Covid-19 Shots Don’t. || </a>
+    <a href="https://www.nbcnews.com/news/us-news/tennessee-teen-talking-about-grandma-who-died-covid-heckled-adults-n1278865"
+      target="_blank">Tennessee teen talking about grandma who died of Covid heckled by adults at school board meeting
+      || </a>
+    <a href="https://www.cnn.com/2021/09/07/health/us-coronavirus-tuesday/index.html" target="_blank">Children make up
+      more than a quarter of the weekly US Covid-19 cases, pediatricians' group says || </a>
+    <a href="https://www.nytimes.com/2021/09/09/business/osha-vaccine-biden-mandate.html" target="_blank">Biden Asks
+      OSHA to Order Vaccine Mandates at Large Employers || </a>
+  </marquee>
+  
+  <div class="container">
+    <div id="carousel">
+      <div class="row">
+        <div class="col-sm-2">
+        </div>
+          <div class="col-sm-8">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="https://www.news10.com/wp-content/uploads/sites/64/2020/12/COVID-19-VACCINE_1280X720_2.jpg?w=900"
+                    class="h-500 w-100" alt="vaccine">
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://bankimooncentre.org/wp-content/uploads/2020/06/Copy-of-BKM-Op-ed-Quotes-1-500x500.png"
+                    class="h-500 w-100" alt="vaccine">
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1612401104473-a79cb1da9351?ixid=MnwxMjA3fDB8MHxwaG90[…]GVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                    class="h-500 w-100" alt="vaccine">
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://eeas.europa.eu/sites/default/files/styles/eeas_full_width/public/2020/03/23/quote_web-covid.jpg?itok=ZCAtsspi"
+                    class="h-500 w-100" alt="vaccine">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-2">
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="well">
-          <h5>State2:</h5>
-            <select id="selDataset2" onchange="optionChanged2(this.value)"></select>
-        </div>
-      </div>
-    <div class="row">
-      <div class="col-md-12">
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <title>Map</title>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="chart1" height = "100px"></div>
-      </div>
-      <div class="col-md-6">
-        <div id="chart4"></div>
-      </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="chart2"></div>
-      </div>
-      <div class="col-md-6">
-        <div id="chart5"></div>
-      </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="chart3"></div>
-      </div>
-      <div class="col-md-6">
-        <div id="chart6"></div>
-      </div>
-      
-          
-          
+    <div class="w3-black" id="#StateSelection">
+      <div id="adam" class="container">
+        <h1>Choose states from the dropdown menus to compare statistics.</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well">
+              <h5>State:</h5>
+              <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="well">
+              <h5>State2:</h5>
+              <select id="selDataset2" onchange="optionChanged2(this.value)"></select>
+            </div>
+          </div>
+        </div>
 
 
- 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="../static/js/app2.js"></script>
-  <!-- <script src="../static/js/app.js"></script> -->
-  <script src="../static/js/mapdata.js"></script>
-  <script src="../static/js/usmap.js"></script>
-  <script src="../static/js/select.js"></script>
+
+        <div class="row">
+          <div class="col-md-12">
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <meta charset="utf-8">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div id="chart1" height="100px"></div>
+          </div>
+          <div class="col-md-6">
+            <div id="chart2"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div id="chart3" height="100px"></div>
+          </div>
+          <div class="col-md-6">
+            <div id="chart4"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div id="chart5"></div>
+          </div>
+          <div class="col-md-6">
+            <div id="chart6"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div id="chart7"></div>
+          </div>
+          <div class="col-md-6">
+            <div id="chart8"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div id="chart9"></div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <script src="../static/js/app2.js"></script>
+      <script src="../static/js/app.js"></script>
+
 
 </body>
 

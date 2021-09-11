@@ -5,11 +5,13 @@ body {
   }
   
   /* Set map, body, and html to 100% of the screen size. */
-  #map,
-  body,
-  html {
-    height: 100%;
-  }
+#map,
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+    }
 
   .well {
     padding: 5px 0px 5px 10px;
@@ -34,6 +36,29 @@ body {
     padding: 50px;
     display: none;
   }
-  * {box-sizing:border-box}
-
   
+  #marquee {
+    padding: 50 px;
+    size: 100px;
+  }
+
+  #adam {
+    background-color: rgb(36, 6, 48);
+    color: white;
+    border-radius: 25px;
+    padding: 20px;
+    width: 1200px;
+    height: 150px;
+    }
+
+  .item, img{
+      height: 100% !important;
+      width:  100% !important;
+      border: 5px solid white;
+    }
+
+  .well {
+    background-color: rgb(36, 6, 48);
+    color: white;
+  }
+
