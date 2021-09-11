@@ -31,7 +31,7 @@ Our final graph displays population density and number of Covid deaths per state
 
 
 
-## Data Cleanup and Coding Challeneges
+## Data Cleanup and Coding Challenges
 
 Because we were using databases from a [previous project](https://github.com/l1987deterding/ETL-Covid-Data.git) that contained much more information than was needed for this project, we had to do some cleaning and combining to get only the relevant data for this dashboard in a format that would allow us to create visualizations. We also ran into the issue of joining data that was being provided at different jurisdiction levels (states vs. counties). We also noticed that some of the data sets had running totals that had been added to since the beginning of Covid, while others may just be providing case/vaccine updates for the most recent week, month, etc. So there was a lot of aggregating and clean up that had to be done in order for our totals and percentages to be accurate. 
 
