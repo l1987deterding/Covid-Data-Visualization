@@ -1,5 +1,5 @@
 # Covid-Data-Visualization
-Group project creating dashboard with interactive charts and current information regarding Covid vaccine allocations per state and county, and the current death toll in the United states.
+This was a group project where we created a dashboard with interactive charts and current information regarding Covid vaccine allocations per state and county, as well as the current death toll in the United states.
 ![image](https://user-images.githubusercontent.com/78701437/132606080-ea5b6a94-5cb5-40c8-b728-12b9be8c06d7.png)
 
 ## Components of Our Web App
@@ -18,7 +18,7 @@ Once the user has selected states, three graphs for each state will populate in 
 ![image](https://user-images.githubusercontent.com/83254124/132961079-7327a75a-3dd0-415d-859e-697fed89d9ff.png)
 
 ### Some things to note about the above graphs:
-  * The Vaccine Allocation pie charts look very similar for each state. This is expected based on vaccine production from each of the three manufacturers and the goal of providing vaccines proportinally to population for each state. So these charts can be viewed as a validation of proper vaccine allocation. 
+  * The Vaccine Allocation pie charts look very similar for each state. This is expected based on vaccine production from each of the three manufacturers and the goal of providing vaccines proportionally to the population for each state. So these charts can be viewed as a validation of proper vaccine allocation. 
   * In the Population Vaxed vs. Population Unvaxed donut charts, red represents the percentage of the population that is unvaccinated, and blue represents the vaccinated percentage. Whichever percentage is higher for a given state will populate on the right side of the donut chart, and the legend will populate the color of the higher percentage at the top. This allows the user to observe which state is doing "better" in this category at-a-glance. 
   * For the Vaccination Hesitancy graphs, this information was provided at the county level for each state. With the data we had, we were not able to provided an overall weighted hesitancy at the state level, but felt that this was extremely relevant to our topic so we are providing the max, mean, and min hesitancy for each state. 
 
