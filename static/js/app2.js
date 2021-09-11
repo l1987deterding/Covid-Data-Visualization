@@ -19,7 +19,7 @@ function show_chart(chosen_state){
         total_allocation = data[1].Total_Allocation;
         unvaxed = data[1].unvaxed_pop;
         sixtyfive_up_vaxed = data[1].avg_pct_65up_vax;
-
+        
         // var state_chosen='Texas' // state_chosen=d3.select('.').attribute('value')
         var chart_data = [{
             x: ["hesitency_max", "hesitency_mean", "hesitency_min"],
@@ -64,7 +64,8 @@ function show_chart(chosen_state){
         };
           
           Plotly.newPlot('chart3', donut_pie, donut_layout);
-            
+        
+        
     })
 };
 
@@ -152,6 +153,7 @@ function show_chart2(chosen_state){
             x:state_list,
             y: density_list,
             name: "Density",
+            yaxis: "y2",
             type: "scatter"
         }
 
@@ -162,8 +164,6 @@ function show_chart2(chosen_state){
             yaxis: {title: 'Number of Deaths'},
             yaxis2: {
               title: 'Density per Sq Mile',
-              titlefont: {color: 'rgb(148, 103, 189)'},
-              tickfont: {color: 'rgb(148, 103, 189)'},
               overlaying: 'y',
               side: 'right'
             }
