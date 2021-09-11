@@ -29,7 +29,7 @@ def scrape_info():
     total_cases = soup.find_all('span', {'class':'totalNumber'}, {'id':'status-cases-total'})[0].text
 
     # Get the deaths
-    total_deaths = soup.find_all('span', {'class':'totalNumber'}, {'id':'status-deaths-total'})[0].text
+    total_deaths = soup.find_all('span', {'class':'totalNumber'}, {'id':'status-deaths-total'})[1].text
 
     # get % of adults with at least 1 vaccination
     one_vacc= soup.find_all('span', {'id':'status-total-vaccines'})[0].text
@@ -51,4 +51,7 @@ def scrape_info():
     # Return results
     return covid_stats
 
+mongo_db.covid_stats.drop()
+
 mongo_db.covid_stats.insert_one(scrape_info())
+

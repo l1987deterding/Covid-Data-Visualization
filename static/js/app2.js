@@ -1,5 +1,5 @@
 function show_chart(chosen_state){
-    d3.json("http://127.0.0.1:5000/find").then((data) => {
+    d3.json("/find").then((data) => {
         console.log(data);
     //    let state_choice= data[1].Abbreviation.filter(data[1] => data[1].Abbreviation == chosen_state);
     //    state_choice = [0]
@@ -70,7 +70,7 @@ function show_chart(chosen_state){
 };
 
 function show_chart2(chosen_state){
-    d3.json("http://127.0.0.1:5000/find").then((data) => {
+    d3.json("/find").then((data) => {
         console.log(data);
     //    let state_choice= data[1].Abbreviation.filter(data[1] => data[1].Abbreviation == chosen_state);
     //    state_choice = [0]
