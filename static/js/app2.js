@@ -27,9 +27,14 @@ function show_chart(chosen_state){
             type: 'bar',
             }];
         var barlayout1={
-            title: (`Vaccination Hesitancy for ${chosen_state}`),
-            yaxis: {range: [0, 25]
-            }}; 
+            title: {text:(`Vaccination Hesitancy for ${chosen_state}`),
+                    font:{size:12}},
+            yaxis: {range: [0, 25]},
+            autosize: false,
+            width: 400,
+            height: 400,
+            showlegend: false,
+            }; 
         Plotly.newPlot('chart7', chart_data, barlayout1);
 
         var allocation_pie = [
@@ -40,8 +45,17 @@ function show_chart(chosen_state){
 
         var pie_layout = {
                 height: 400,
-                width: 500,
-                title: `Total Allocation ${total_allocation[chosen_state]} (Population: ${population[chosen_state]})`
+                width: 400,
+                title: {text:`Total Allocation ${total_allocation[chosen_state]} (Population: ${population[chosen_state]})`,
+                        font:{size: 12}
+                        },
+                autosize: false,
+                showlegend: true,
+            legend: {
+                        x: 0,
+                        y: 2
+                    }
+
             };
         
         Plotly.newPlot('chart1', allocation_pie, pie_layout);
@@ -53,15 +67,17 @@ function show_chart(chosen_state){
             hole: .4,
             type: 'pie',
             marker: {
-                colors: ["blue", "red"]}
+                colors: ["green", "red"]}
         }]
 
         var donut_layout = {
+            autosize:false,
             height: 400,
-            width: 500,
-            title: "Population Vaxed vs Population Unvaxed"
-            
-        };
+            width: 400,
+            title: {text:"Population Vaxed vs Population Unvaxed",
+                    font:{size:12}},
+            showlegend: false,
+            };
           
           Plotly.newPlot('chart3', donut_pie, donut_layout);
         
@@ -98,10 +114,14 @@ function show_chart2(chosen_state){
             }
         ];
         var barlayout1={
-            title: (`Vaccination Hesitancy for ${chosen_state}`),
-            yaxis: {
-              range: [0, 25]
-            }}; 
+            title: {text:(`Vaccination Hesitancy for ${chosen_state}`),
+                    font:{size:12}},
+            yaxis: {range: [0, 25]},
+            autosize: false,
+            width: 400,
+            height: 400,
+            showlegend: false,
+            }; 
         Plotly.newPlot('chart8', chart_data, barlayout1);
 
         var allocation_pie = [
@@ -110,11 +130,20 @@ function show_chart2(chosen_state){
             values: [pfizer_first_dose[chosen_state], moderna_first_dose[chosen_state], jnj_dose[chosen_state]],
             type: 'pie'}];
 
-        var pie_layout = {
-            height: 400,
-            width: 500,
-            title: `Total Allocation ${total_allocation[chosen_state]} (Population: ${population[chosen_state]}))`
-        };
+            var pie_layout = {
+                height: 400,
+                width: 400,
+                title: {text:`Total Allocation ${total_allocation[chosen_state]} (Population: ${population[chosen_state]})`,
+                        font:{size: 12}
+                        },
+                autosize: false,
+                showlegend: true,
+            legend: {
+                        x: 0,
+                        y: 2
+                    }
+
+            };
     
         Plotly.newPlot('chart2', allocation_pie, pie_layout);
         
@@ -125,16 +154,18 @@ function show_chart2(chosen_state){
             hole: .4,
             type: 'pie',
             marker: {
-                colors: ["blue", "red"]
+                colors: ["green", "red"]
               },
         }]
 
         var donut_layout = {
+            autosize:false,
             height: 400,
-            width: 500,
-            title: "Population Vaxed vs Population Unvaxed"
-            
-        };
+            width: 400,
+            title: {text:"Population Vaxed vs Population Unvaxed",
+                    font:{size:12}},
+            showlegend: false,
+            };
           
           Plotly.newPlot('chart4', donut_pie, donut_layout);
 
